@@ -1,0 +1,109 @@
+<div class="home-container">
+  <div class="welcome-section">
+    <h1>{{title}}</h1>
+    <p>{{description}}</p>
+  </div>
+
+  <div class="stats-cards">
+    <div class="stat-card">
+      <div class="stat-icon">
+        <i class="fas fa-ticket-alt"></i>
+      </div>
+      <div class="stat-info">
+        <h3>Total Requests</h3>
+        <p class="stat-number">{{totalRequests}}</p>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon">
+        <i class="fas fa-clock"></i>
+      </div>
+      <div class="stat-info">
+        <h3>Open Requests</h3>
+        <p class="stat-number">{{openRequests}}</p>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon">
+        <i class="fas fa-spinner"></i>
+      </div>
+      <div class="stat-info">
+        <h3>In Progress</h3>
+        <p class="stat-number">{{inProgressRequests}}</p>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon">
+        <i class="fas fa-check-circle"></i>
+      </div>
+      <div class="stat-info">
+        <h3>Closed</h3>
+        <p class="stat-number">{{closedRequests}}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="charts-container">
+    <div class="chart-card">
+      <h3>Monthly Request Statistics</h3>
+      <div class="bar-chart">
+        <div class="chart-bars">
+          <div class="bar" *ngFor="let stat of monthlyStats">
+            <div class="bar-group">
+              <div class="bar-segment new" [style.height.%]="stat.new">
+                <span class="bar-value">{{stat.new}}%</span>
+              </div>
+              <div class="bar-segment resolved" [style.height.%]="stat.resolved">
+                <span class="bar-value">{{stat.resolved}}%</span>
+              </div>
+            </div>
+            <div class="bar-label">{{stat.month}}</div>
+          </div>
+        </div>
+        <div class="chart-legend">
+          <div class="legend-item">
+            <div class="legend-color new"></div>
+            <span>New Requests</span>
+          </div>
+          <div class="legend-item">
+            <div class="legend-color resolved"></div>
+            <span>Resolved Requests</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="chart-card">
+      <h3>Priority Distribution</h3>
+      <div class="priority-chart">
+        <div class="priority-bars">
+          <div class="priority-bar" *ngFor="let stat of priorityStats">
+            <div class="bar-label">{{stat.priority}}</div>
+            <div class="bar-container">
+              <div class="bar" [style.width.%]="stat.count" [style.background-color]="stat.color"></div>
+              <span class="bar-value">{{stat.count}}%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="features">
+    <div class="feature-card">
+      <h3>Technical Support</h3>
+      <p>Get expert assistance with your technical issues and queries.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Ticket System</h3>
+      <p>Submit and track support tickets for your technical problems.</p>
+    </div>
+    <div class="feature-card">
+      <h3>Knowledge Base</h3>
+      <p>Access our comprehensive knowledge base for self-help solutions.</p>
+    </div>
+  </div>
+</div> 

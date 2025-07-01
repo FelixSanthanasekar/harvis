@@ -1,0 +1,61 @@
+<div class="view-container" *ngIf="request">
+  <div class="header">
+    <h1>Request Details</h1>
+    <div class="actions">
+      <button class="action-btn" (click)="goBack()">
+        <i class="fas fa-arrow-left"></i>
+        <span>Back to List</span>
+      </button>
+      <button class="action-btn primary" (click)="editRequest()">
+        <i class="fas fa-edit"></i>
+        <span>Edit Request</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="request-details">
+    <div class="detail-group">
+      <label>Request ID</label>
+      <span>{{request.id}}</span>
+    </div>
+
+    <div class="detail-group">
+      <label>Client Name</label>
+      <span>{{request.clientName}}</span>
+    </div>
+
+    <div class="detail-group">
+      <label>Title</label>
+      <span>{{request.title}}</span>
+    </div>
+
+    <div class="detail-group">
+      <label>Category</label>
+      <span>{{request.category}}</span>
+    </div>
+
+    <div class="detail-group">
+      <label>Priority</label>
+      <span class="priority-badge" [ngClass]="request.priority.toLowerCase()">
+        {{request.priority}}
+      </span>
+    </div>
+
+    <div class="detail-group">
+      <label>Status</label>
+      <span class="status-badge" [ngClass]="request.status.toLowerCase()">
+        {{request.status}}
+      </span>
+    </div>
+
+    <div class="detail-group">
+      <label>Date</label>
+      <span>{{request.date}}</span>
+    </div>
+
+    <div class="detail-group full-width">
+      <label>Description</label>
+      <p>{{request.description}}</p>
+    </div>
+  </div>
+</div> 

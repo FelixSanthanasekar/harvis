@@ -1,0 +1,113 @@
+<div class="list-container">
+  <h1>{{title}}</h1>
+  <p>{{description}}</p>
+
+  <div class="list-actions">
+    <div class="search-box">
+      <input type="text" [(ngModel)]="searchTerm" (ngModelChange)="applyFilters()" placeholder="Search requests...">
+    </div>
+    
+    <div class="filter-sort">
+      <div class="dropdown">
+        <button class="action-btn" (click)="toggleFilterMenu()">
+          Filter
+          <span class="dropdown-icon">▼</span>
+        </button>
+        <div class="dropdown-menu" *ngIf="showFilterMenu">
+          <div class="filter-group">
+            <label>Status</label>
+            <select [(ngModel)]="filterStatus" (ngModelChange)="applyFilters()">
+              <option value="">All Statuses</option>
+              <option *ngFor="let status of statuses" [value]="status">{{status}}</option>
+            </select>
+          </div>
+          
+          <div class="filter-group">
+            <label>Priority</label>
+            <select [(ngModel)]="filterPriority" (ngModelChange)="applyFilters()">
+              <option value="">All Priorities</option>
+              <option *ngFor="let priority of priorities" [value]="priority">{{priority}}</option>
+            </select>
+          </div>
+          
+          <div class="filter-group">
+            <label>Category</label>
+            <select [(ngModel)]="filterCategory" (ngModelChange)="applyFilters()">
+              <option value="">All Categories</option>
+              <option *ngFor="let category of categories" [value]="category">{{category}}</option>
+            </select>
+          </div>
+          
+          <button class="action-btn small" (click)="clearFilters()">Clear Filters</button>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <button class="action-btn" (click)="toggleSortMenu()">
+          Sort
+          <span class="dropdown-icon">▼</span>
+        </button>
+        <div class="dropdown-menu" *ngIf="showSortMenu">
+          <button class="sort-option" (click)="setSort('date')">
+            Date {{sortField === 'date' ? (sortDirection === 'asc' ? '↑' : '↓') : ''}}
+          </button>
+          <button class="sort-option" (click)="setSort('priority')">
+            Priority {{sortField === 'priority' ? (sortDirection === 'asc' ? '↑' : '↓') : ''}}
+          </button>
+          <button class="sort-option" (click)="setSort('status')">
+            Status {{sortField === 'status' ? (sortDirection === 'asc' ? '↑' : '↓') : ''}}
+          </button>
+          <button class="sort-option" (click)="setSort('clientName')">
+            Client Name {{sortField === 'clientName' ? (sortDirection === 'asc' ? '↑' : '↓') : ''}}
+          </button>
+        </div>
+      </div>
+
+      <button class="action-btn primary" routerLink="/add-request">New Request</button>
+    </div>
+  </div>
+
+  <div class="requests-table">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Client Name</th>
+          <th>Title</th>
+          <th>Category</th>
+          <th>Priority</th>
+          <th>Status</th>
+          <th>Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let request of filteredRequests">
+          <td>{{request.id}}</td>
+          <td>{{request.clientName}}</td>
+          <td>{{request.title}}</td>
+          <td>{{request.category}}</td>
+          <td>
+            <span class="priority-badge" [ngClass]="request.priority.toLowerCase()">
+              {{request.priority}}
+            </span>
+          </td>
+          <td>
+            <span class="status-badge" [ngClass]="request.status.toLowerCase()">
+              {{request.status}}
+            </span>
+          </td>
+          <td>{{request.date}}</td>
+          <td>
+            <button class="action-btn small" (click)="viewRequest(request.id)" title="View Request">
+              <i class="fas fa-eye"></i>
+            </button>
+            <button class="action-btn small" (click)="editRequest(request.id)" title="Edit Request">
+              <i class="fas fa-edit"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div> 

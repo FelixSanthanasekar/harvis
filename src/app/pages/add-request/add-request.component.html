@@ -1,0 +1,48 @@
+<div class="request-container">
+  <h1>{{title}}</h1>
+  <p>{{description}}</p>
+
+  <form class="request-form" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="clientName">Client Name</label>
+      <input type="text" id="clientName" name="clientName" [(ngModel)]="request.clientName" required>
+    </div>
+
+    <div class="form-group">
+      <label for="title">Request Title</label>
+      <input type="text" id="title" name="title" [(ngModel)]="request.title" required>
+    </div>
+
+    <div class="form-group">
+      <label for="category">Category</label>
+      <select id="category" name="category" [(ngModel)]="request.category" required>
+        <option value="">Select a category</option>
+        <option *ngFor="let category of categories" [value]="category">{{category}}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="priority">Priority</label>
+      <select id="priority" name="priority" [(ngModel)]="request.priority" required>
+        <option value="">Select priority</option>
+        <option *ngFor="let priority of priorities" [value]="priority">{{priority}}</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea id="description" name="description" rows="5" [(ngModel)]="request.description" required></textarea>
+    </div>
+
+    <div class="form-actions">
+      <button type="button" class="action-btn" routerLink="/request-list">
+        <i class="fas fa-arrow-left"></i>
+        Back to List
+      </button>
+      <button type="submit" class="action-btn primary">
+        <i class="fas fa-save"></i>
+        Submit Request
+      </button>
+    </div>
+  </form>
+</div> 

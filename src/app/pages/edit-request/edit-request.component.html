@@ -1,0 +1,61 @@
+<div class="edit-container" *ngIf="request">
+  <div class="header">
+    <h1>Edit Request</h1>
+    <button class="action-btn" (click)="goBack()">Cancel</button>
+  </div>
+
+  <form (ngSubmit)="onSubmit()" class="edit-form">
+    <div class="form-group">
+      <label for="clientName">Client Name</label>
+      <input type="text" id="clientName" name="clientName" [(ngModel)]="request.clientName" required>
+    </div>
+
+    <div class="form-group">
+      <label for="title">Request Title</label>
+      <input type="text" id="title" name="title" [(ngModel)]="request.title" required>
+    </div>
+
+    <div class="form-group">
+      <label for="category">Category</label>
+      <select id="category" name="category" [(ngModel)]="request.category" required>
+        <option *ngFor="let category of categories" [value]="category">
+          {{category}}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="priority">Priority</label>
+      <select id="priority" name="priority" [(ngModel)]="request.priority" required>
+        <option *ngFor="let priority of priorities" [value]="priority">
+          {{priority}}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="status">Status</label>
+      <select id="status" name="status" [(ngModel)]="request.status" required>
+        <option *ngFor="let status of statuses" [value]="status">
+          {{status}}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea id="description" name="description" rows="5" [(ngModel)]="request.description" required></textarea>
+    </div>
+
+    <div class="form-actions">
+      <button class="action-btn" (click)="goBack()">
+        <i class="fas fa-arrow-left"></i>
+        Back to List
+      </button>
+      <button class="action-btn primary" type="submit">
+        <i class="fas fa-save"></i>
+        Save Changes
+      </button>
+    </div>
+  </form>
+</div> 
